@@ -6,4 +6,5 @@ package com.qpmLogger.constants;
  */
 public interface TableNameConstants {
     String Job = "job";
+    String Connections = "connections";
 }
