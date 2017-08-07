@@ -17,7 +17,7 @@ import java.util.Date;
  * Date: 8/7/17 11:24 PM
  */
 @Component
-public class Listener implements NotificationListener {
+public class JobEventReceiveListener implements NotificationListener {
 
     @Autowired
     private JobEventService jobEventService;
