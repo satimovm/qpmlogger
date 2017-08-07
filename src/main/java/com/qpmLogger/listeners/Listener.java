@@ -1,8 +1,11 @@
 package com.qpmLogger.listeners;
 
 import com.qpmLogger.dto.JobEventTO;
+import com.qpmLogger.services.JobEventService;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.management.Notification;
 import javax.management.NotificationListener;
@@ -13,7 +16,11 @@ import java.util.Date;
  * User: Satimov MUrad
  * Date: 8/7/17 11:24 PM
  */
+@Component
 public class Listener implements NotificationListener {
+
+    @Autowired
+    private JobEventService jobEventService;
 
     @Getter
     @Setter
@@ -26,14 +33,11 @@ public class Listener implements NotificationListener {
         }
         final Object object = notification.getUserData();
 
-        if (object != null && !(object instanceof CompositeDataSupport)) {
+        if (object == null || !(object instanceof CompositeDataSupport)) {
             return;
         }
         try {
             final CompositeDataSupport compositeDataSupport = (CompositeDataSupport) object;
-            if (compositeDataSupport == null) {
-                return;
-            }
             final JobEventTO event = new JobEventTO();
 
             event.setJobName((String) compositeDataSupport.get("jobName"));
@@ -58,7 +62,7 @@ public class Listener implements NotificationListener {
                 event.setSchedulerId(scheduleID);
                 event.setQuartzInstanceId(uuid);
             }
-            EventService.addEvent(event);
+            jobEventService.saveNewEvent(event);
         } catch (Exception t) {
             t.printStackTrace();
         }
