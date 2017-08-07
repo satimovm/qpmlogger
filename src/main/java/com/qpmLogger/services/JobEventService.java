@@ -2,7 +2,7 @@ package com.qpmLogger.services;
 
 /**
  * User: Satimov Murad
- * Date: 8/7/17 11:16 PM
+ * Date: 8/7/17 11:29 PM
  */
-public interface JobService {
+public interface JobEventService {
 }
