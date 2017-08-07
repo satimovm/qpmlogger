@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(MappingConstants.Jobs)
-public class JobMonitorApi extends BaseApi {
+public class JobApi extends BaseApi {
 
     @RequestMapping(
             value = List,
