@@ -19,12 +19,16 @@ import java.util.Date;
 @Component
 public class JobEventReceiveListener implements NotificationListener {
 
-    @Autowired
-    private JobEventService jobEventService;
+    private final JobEventService jobEventService;
 
     @Getter
     @Setter
     private String UUID;
+
+    @Autowired
+    public JobEventReceiveListener(JobEventService jobEventService) {
+        this.jobEventService = jobEventService;
+    }
 
     @Override
     public void handleNotification(Notification notification, Object handback) {
