@@ -1,6 +1,7 @@
 package com.qpmLogger.dto;
 
 import com.qpmLogger.listeners.JobEventReceiveListener;
+import com.qpmLogger.services.QuartzJMXAdapter;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -22,7 +23,7 @@ import java.util.Map;
 public class QuartzInstanceTO extends RemoteConnectionTO {
     private static Map<String, JobEventReceiveListener> listenersMap = new HashMap<>();
     private MBeanServerConnection mBeanServerConnection;
-    //    private QuartzJMXAdapter jmxAdapter;
+    private QuartzJMXAdapter jmxAdapter;
     private List<SchedulerTO> schedulerList = new ArrayList<>();
     private JMXConnector jmxConnector;
 

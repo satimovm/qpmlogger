@@ -1,9 +1,11 @@
 package com.qpmLogger.services.impl;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.qpmLogger.db.RemoteConnectionsDomain;
-import com.qpmLogger.dto.RemoteConnectionTO;
 import com.qpmLogger.dto.QuartzInstanceTO;
+import com.qpmLogger.dto.RemoteConnectionTO;
 import com.qpmLogger.dto.SchedulerTO;
 import com.qpmLogger.listeners.JobEventReceiveListener;
 import com.qpmLogger.services.QuartzConnectService;
@@ -32,6 +34,8 @@ import java.util.Set;
 @Slf4j
 @Service
 public class QuartzConnectServiceImpl implements QuartzConnectService {
+
+    private static Map<String, QuartzInstanceTO> quartzInstanceMap = Maps.newConcurrentMap();
 
     @Autowired
     private QuartzJMXAdapter quartzJMXAdapter;
@@ -73,22 +77,43 @@ public class QuartzConnectServiceImpl implements QuartzConnectService {
         return quartzInstance;
     }
 
+    @Override
+    public Map<String, QuartzInstanceTO> getInstanceMap() {
+        return quartzInstanceMap;
+    }
+
+    @Override
+    public void putInstanceMap(QuartzInstanceTO quartzInstanceTO) {
+        if (quartzInstanceTO == null) {
+            return;
+        }
+        if (quartzInstanceMap == null) {
+            quartzInstanceMap = Maps.newConcurrentMap();
+        }
+        quartzInstanceMap.put(quartzInstanceTO.getUuid(), quartzInstanceTO);
+
+    }
+
+    @Override
+    @Transactional
     public void initQuartzInstanceMap() {
-        final List<RemoteConnectionsDomain> configs = remoteConnectionsDao.findAllByDeletedFalse();
+        final List<RemoteConnectionsDomain> configs = remoteConnectionsDao.findAllByDeletedFalseAndTryCountIsLessThanEqual(5);
 
         log.info("Found " + configs.size() + " Quartz instances in settings file.");
 
         for (RemoteConnectionsDomain config : configs) {
-            final QuartzConnectService quartzConnectService = new QuartzConnectServiceImpl();
             QuartzInstanceTO quartzInstance = null;
             try {
-//                quartzInstance = quartzConnectService.initInstance(config);
+                quartzInstance = this.initInstance(config.toTO());
+                config.setConnected(true);
                 config.setConnected(true);
             } catch (Throwable t) {
                 log.error("Failed to connect! " + config.toString(), t);
+                config.setConnected(false);
+                config.setTryCount(Optional.fromNullable(config.getTryCount()).or(0) + 1);
             }
             if (quartzInstance != null) {
-//                QuartzInstanceService.putQuartzInstance(quartzInstance);
+                this.putInstanceMap(quartzInstance);
                 log.debug(quartzInstance.toString());
             }
         }
@@ -104,5 +129,4 @@ public class QuartzConnectServiceImpl implements QuartzConnectService {
                                  quartzConfig.getPort() +
                                  "/jmxrmi");
     }
-
 }

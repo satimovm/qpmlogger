@@ -1,6 +1,7 @@
 package com.qpmLogger.utils;
 
 import com.qpmLogger.dto.QuartzInstanceTO;
+import com.qpmLogger.services.QuartzJMXAdapter;
 import org.springframework.util.StringUtils;
 
 import javax.management.ObjectName;
@@ -24,13 +25,13 @@ public class QuartzConnectUtil {
             return;
         }
         try {
-//            final QuartzJMXAdapter adapter = quartzInstance.getJmxAdapter();
+            final QuartzJMXAdapter adapter = quartzInstance.getJmxAdapter();
 
-//            adapter.printAttributes(quartzInstance, objectName);
-//            adapter.printConstructors(quartzInstance, objectName);
-//            adapter.printOperations(quartzInstance, objectName);
-//            adapter.printNotifications(quartzInstance, objectName);
-//            adapter.printClassName(quartzInstance, objectName);
+            adapter.printAttributes(quartzInstance, objectName);
+            adapter.printConstructors(quartzInstance, objectName);
+            adapter.printOperations(quartzInstance, objectName);
+            adapter.printNotifications(quartzInstance, objectName);
+            adapter.printClassName(quartzInstance, objectName);
         } catch (Throwable t) {
             t.printStackTrace();
         }

@@ -11,5 +11,5 @@ import java.util.List;
  */
 public interface RemoteConnectionsDao extends JpaRepository<RemoteConnectionsDomain, Long> {
 
-    List<RemoteConnectionsDomain> findAllByDeletedFalse();
+    List<RemoteConnectionsDomain> findAllByDeletedFalseAndTryCountIsLessThanEqual(Integer tryCount);
 }
