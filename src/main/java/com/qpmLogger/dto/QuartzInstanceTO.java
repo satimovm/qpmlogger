@@ -3,6 +3,7 @@ package com.qpmLogger.dto;
 import com.qpmLogger.listeners.JobEventReceiveListener;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.management.MBeanServerConnection;
 import javax.management.remote.JMXConnector;
@@ -17,6 +18,7 @@ import java.util.Map;
  */
 @Getter
 @Setter
+@ToString
 public class QuartzInstanceTO extends RemoteConnectionTO {
     private static Map<String, JobEventReceiveListener> listenersMap = new HashMap<>();
     private MBeanServerConnection mBeanServerConnection;
