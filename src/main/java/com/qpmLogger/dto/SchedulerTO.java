@@ -19,10 +19,13 @@ public class SchedulerTO implements Serializable {
     private boolean shutdown;
     private String instanceId;
     private int threadPoolSize;
-    private String uuidInstance;
     private boolean standByMode;
     private ObjectName objectName;
     private String jobStoreClassName;
     private String quartzInstanceUUID;
     private String threadPoolClassName;
+
+    public String getUuidInstance() {
+        return this.getQuartzInstanceUUID() + "@@" + this.getInstanceId();
+    }
 }
