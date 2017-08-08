@@ -21,4 +21,12 @@ public class QuartzConfigTO implements Serializable {
     private String userName;
     private String password;
     private boolean isConnected;
+
+    public QuartzConfigTO(String uuid, String host, int port, String userName, String password){
+        this.uuid = uuid;
+        this.host = host;
+        this.port = port;
+        this.userName = userName;
+        this.password = password;
+    }
 }
