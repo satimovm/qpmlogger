@@ -5,10 +5,7 @@ import com.qpmLogger.dto.JobEventTO;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -22,7 +19,7 @@ import java.util.Date;
 @Table(name = TableNameConstants.JobEvent)
 public class JobEventDomain implements Serializable {
     @Id
-    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String calendarName;

@@ -1,12 +1,14 @@
 package com.qpmLogger.services.impl;
 
 import com.google.common.collect.Lists;
-import com.qpmLogger.dto.QuartzConfigTO;
+import com.qpmLogger.db.RemoteConnectionsDomain;
+import com.qpmLogger.dto.RemoteConnectionTO;
 import com.qpmLogger.dto.QuartzInstanceTO;
 import com.qpmLogger.dto.SchedulerTO;
 import com.qpmLogger.listeners.JobEventReceiveListener;
 import com.qpmLogger.services.QuartzConnectService;
 import com.qpmLogger.services.QuartzJMXAdapter;
+import com.qpmLogger.services.RemoteConnectionsDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,10 +35,12 @@ public class QuartzConnectServiceImpl implements QuartzConnectService {
 
     @Autowired
     private QuartzJMXAdapter quartzJMXAdapter;
+    @Autowired
+    private RemoteConnectionsDao remoteConnectionsDao;
 
     @Override
     @Transactional
-    public QuartzInstanceTO initInstance(QuartzConfigTO config) throws Exception {
+    public QuartzInstanceTO initInstance(RemoteConnectionTO config) throws Exception {
         if (config == null) {
             return null;
         }
@@ -69,7 +73,28 @@ public class QuartzConnectServiceImpl implements QuartzConnectService {
         return quartzInstance;
     }
 
-    private JMXServiceURL createQuartzInstanceConnection(QuartzConfigTO quartzConfig) throws MalformedURLException {
+    public void initQuartzInstanceMap() {
+        final List<RemoteConnectionsDomain> configs = remoteConnectionsDao.findAllByDeletedFalse();
+
+        log.info("Found " + configs.size() + " Quartz instances in settings file.");
+
+        for (RemoteConnectionsDomain config : configs) {
+            final QuartzConnectService quartzConnectService = new QuartzConnectServiceImpl();
+            QuartzInstanceTO quartzInstance = null;
+            try {
+//                quartzInstance = quartzConnectService.initInstance(config);
+                config.setConnected(true);
+            } catch (Throwable t) {
+                log.error("Failed to connect! " + config.toString(), t);
+            }
+            if (quartzInstance != null) {
+//                QuartzInstanceService.putQuartzInstance(quartzInstance);
+                log.debug(quartzInstance.toString());
+            }
+        }
+    }
+
+    private JMXServiceURL createQuartzInstanceConnection(RemoteConnectionTO quartzConfig) throws MalformedURLException {
         if (quartzConfig == null) {
             return null;
         }

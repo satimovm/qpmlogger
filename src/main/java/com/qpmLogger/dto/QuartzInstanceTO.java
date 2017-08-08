@@ -17,14 +17,14 @@ import java.util.Map;
  */
 @Getter
 @Setter
-public class QuartzInstanceTO extends QuartzConfigTO {
+public class QuartzInstanceTO extends RemoteConnectionTO {
     private static Map<String, JobEventReceiveListener> listenersMap = new HashMap<>();
     private MBeanServerConnection mBeanServerConnection;
     //    private QuartzJMXAdapter jmxAdapter;
     private List<SchedulerTO> schedulerList = new ArrayList<>();
     private JMXConnector jmxConnector;
 
-    public QuartzInstanceTO(QuartzConfigTO config) {
+    public QuartzInstanceTO(RemoteConnectionTO config) {
         super(config.getUuid(), config.getHost(), config.getPort(), config.getUserName(), config.getPassword());
     }
 

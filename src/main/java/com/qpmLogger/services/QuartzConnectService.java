@@ -1,6 +1,6 @@
 package com.qpmLogger.services;
 
-import com.qpmLogger.dto.QuartzConfigTO;
+import com.qpmLogger.dto.RemoteConnectionTO;
 import com.qpmLogger.dto.QuartzInstanceTO;
 
 /**
@@ -8,5 +8,5 @@ import com.qpmLogger.dto.QuartzInstanceTO;
  * Date: 8/8/17 2:48 PM
  */
 public interface QuartzConnectService {
-    QuartzInstanceTO initInstance(QuartzConfigTO config) throws Exception;
+    QuartzInstanceTO initInstance(RemoteConnectionTO config) throws Exception;
 }
