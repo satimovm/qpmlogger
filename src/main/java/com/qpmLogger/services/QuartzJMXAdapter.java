@@ -9,7 +9,7 @@ import javax.management.ObjectName;
 import java.util.List;
 
 /**
- * User: satimov
+ * User: Satimov Murad
  * Date: 8/8/17 2:59 PM
  */
 public interface QuartzJMXAdapter {

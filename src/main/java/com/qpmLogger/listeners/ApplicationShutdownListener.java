@@ -3,10 +3,10 @@ package com.qpmLogger.listeners;
 import com.qpmLogger.dto.QuartzInstanceTO;
 import com.qpmLogger.services.QuartzConnectService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.management.remote.JMXConnector;
 import java.io.IOException;
@@ -17,19 +17,18 @@ import java.util.Enumeration;
 import java.util.Map;
 
 /**
- * User: satimov
- * Date: 8/8/17 4:57 PM
+ * User: Satimov Murad
+ * Date: 8/8/17 5:26 PM
  */
 @Slf4j
 @Component
-public class DestroyDisposableBean implements DisposableBean {
+public class ApplicationShutdownListener implements ApplicationListener<ContextClosedEvent> {
 
     @Autowired
     private QuartzConnectService connectService;
 
     @Override
-    @Transactional
-    public void destroy() throws Exception {
+    public void onApplicationEvent(ContextClosedEvent contextClosedEvent) {
         log.info("Shutting down SettingsLoaderListener service...");
         final Map<String, QuartzInstanceTO> instanceMap = connectService.getInstanceMap();
 
