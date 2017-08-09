@@ -7,10 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import java.util.Date;
 
 /**
  * User: satimov
@@ -22,9 +19,6 @@ import java.util.Date;
 @Table(name = TableNameConstants.Connections)
 public class RemoteConnectionsDomain extends BaseDomain {
 
-    private Date createdDate;
-    private Date modifiedDate;
-    private boolean deleted;
     private String name;
     private String host;
     private Integer port;
@@ -34,17 +28,6 @@ public class RemoteConnectionsDomain extends BaseDomain {
     private String password;
     private Boolean connected;
     private Integer tryCount;
-
-    @PrePersist
-    public void prePersist() {
-        this.setCreatedDate(new Date());
-        this.setModifiedDate(new Date());
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        this.setModifiedDate(new Date());
-    }
 
     public RemoteConnectionTO toTO() {
         final RemoteConnectionTO item = new RemoteConnectionTO();
