@@ -19,7 +19,6 @@ import java.io.Serializable;
 @Table(name = TableNameConstants.JobEvent)
 public class JobEventDomain extends BaseJobEventDomain implements Serializable {
 
-
     @Override
     public JobEventDomain fromTO(JobEventTO item) {
         return (JobEventDomain) super.fromTO(item);
