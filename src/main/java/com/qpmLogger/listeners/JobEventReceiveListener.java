@@ -4,7 +4,6 @@ import com.qpmLogger.dto.JobEventTO;
 import com.qpmLogger.services.JobEventService;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.management.Notification;
@@ -19,7 +18,8 @@ import java.util.Date;
 @Component
 public class JobEventReceiveListener implements NotificationListener {
 
-    @Autowired
+    @Getter
+    @Setter
     private JobEventService jobEventService;
 
     @Getter
