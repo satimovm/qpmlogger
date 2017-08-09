@@ -13,7 +13,7 @@ import javax.management.openmbean.CompositeDataSupport;
 import java.util.Date;
 
 /**
- * User: Satimov MUrad
+ * User: Satimov Murad
  * Date: 8/7/17 11:24 PM
  */
 @Component

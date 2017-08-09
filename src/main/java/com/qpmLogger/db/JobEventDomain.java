@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table(name = TableNameConstants.OtherJobEvent)
+@Table(name = TableNameConstants.JobEvent)
 public class JobEventDomain extends BaseJobEventDomain implements Serializable {
 
 

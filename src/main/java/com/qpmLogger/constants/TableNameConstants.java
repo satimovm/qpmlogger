@@ -6,6 +6,6 @@ package com.qpmLogger.constants;
  */
 public interface TableNameConstants {
     String ExecutedJobEvent = "executed_job_event";
-    String OtherJobEvent = "other_job_event";
+    String JobEvent = "job_event";
     String Connections = "connections";
 }
