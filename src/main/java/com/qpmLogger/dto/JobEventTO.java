@@ -25,8 +25,8 @@ public class JobEventTO {
     private Date previousFireTime;
     private Date scheduledFireTime;
     private boolean recovering;
-    private long jobRunTime;
-    private int refireCount;
+    private Long jobRunTime;
+    private Integer refireCount;
     private String schedulerId;
     private String quartzInstanceId;
     private String type;
