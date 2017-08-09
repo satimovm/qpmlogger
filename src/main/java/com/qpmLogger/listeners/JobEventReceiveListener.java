@@ -28,7 +28,7 @@ public class JobEventReceiveListener implements NotificationListener {
 
     @Override
     public void handleNotification(Notification notification, Object handback) {
-        if (notification == null || !"jobWasExecuted".equalsIgnoreCase(notification.getType())) {
+        if (notification == null) {
             return;
         }
         final Object object = notification.getUserData();
@@ -63,7 +63,10 @@ public class JobEventReceiveListener implements NotificationListener {
                 event.setSchedulerId(scheduleID);
                 event.setQuartzInstanceId(uuid);
             }
-            jobEventService.saveNewExecutedEvent(event);
+            if ("jobWasExecuted".equalsIgnoreCase(notification.getType())) {
+                jobEventService.saveExecutedEvent(event);
+            }
+            jobEventService.saveJobEvent(event);
         } catch (Exception t) {
             t.printStackTrace();
         }

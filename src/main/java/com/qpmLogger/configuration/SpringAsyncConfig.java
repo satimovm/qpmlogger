@@ -12,7 +12,7 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import java.util.concurrent.Executor;
 
 /**
- * User: satimov
+ * User: Satimov Murad
  * Date: 8/9/17 2:17 PM
  */
 @EnableAsync

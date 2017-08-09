@@ -8,7 +8,7 @@ import com.qpmLogger.dto.JobEventTO;
  */
 public interface JobEventService {
 
-    void saveNewExecutedEvent(JobEventTO event);
+    void saveExecutedEvent(JobEventTO event);
 
-    void saveOtherExecutedEvent(JobEventTO event);
+    void saveJobEvent(JobEventTO event);
 }

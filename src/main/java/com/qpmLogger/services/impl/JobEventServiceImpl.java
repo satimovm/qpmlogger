@@ -32,7 +32,7 @@ public class JobEventServiceImpl implements JobEventService {
     @Async
     @Override
     @Transactional
-    public void saveNewExecutedEvent(JobEventTO event) {
+    public void saveExecutedEvent(JobEventTO event) {
         log.info("Saving new executed JobEvent: " + event);
         final ExecutedJobEventDomain domain = new ExecutedJobEventDomain().fromTO(event);
 
@@ -46,7 +46,7 @@ public class JobEventServiceImpl implements JobEventService {
     @Async
     @Override
     @Transactional
-    public void saveOtherExecutedEvent(JobEventTO event) {
+    public void saveJobEvent(JobEventTO event) {
         log.info("Saving new JobEvent: " + event);
         final JobEventDomain domain = new JobEventDomain().fromTO(event);
 
