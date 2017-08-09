@@ -34,7 +34,7 @@ public class JobEventServiceImpl implements JobEventService {
     @Transactional
     public void saveNewExecutedEvent(JobEventTO event) {
         log.info("Saving new executed JobEvent: " + event);
-        final ExecutedJobEventDomain domain = new ExecutedJobEventDomain().fromTO(event)
+        final ExecutedJobEventDomain domain = new ExecutedJobEventDomain().fromTO(event);
 
         if (domain == null) {
             log.error("Empty job event");
