@@ -6,7 +6,7 @@
     <groupId>qpm_logger</groupId>
     <artifactId>qpmlogger</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>qpmlogger</name>
     <description>Quartz performance monitor logger</description>
@@ -81,6 +81,11 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.1.1</version>
             </plugin>
         </plugins>
     </build>
