@@ -29,4 +29,5 @@ public class JobEventTO {
     private int refireCount;
     private String schedulerId;
     private String quartzInstanceId;
+    private String type;
 }

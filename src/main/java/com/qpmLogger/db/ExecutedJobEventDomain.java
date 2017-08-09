@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.io.Serializable;
 
 /**
  * User: Satimov Murad
@@ -16,12 +15,11 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table(name = TableNameConstants.OtherJobEvent)
-public class JobEventDomain extends BaseJobEventDomain implements Serializable {
-
+@Table(name = TableNameConstants.ExecutedJobEvent)
+public class ExecutedJobEventDomain extends BaseJobEventDomain {
 
     @Override
-    public JobEventDomain fromTO(JobEventTO item) {
-        return (JobEventDomain) super.fromTO(item);
+    public ExecutedJobEventDomain fromTO(JobEventTO item) {
+        return (ExecutedJobEventDomain) super.fromTO(item);
     }
 }

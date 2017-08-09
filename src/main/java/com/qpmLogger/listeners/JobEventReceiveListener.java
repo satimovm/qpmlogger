@@ -53,6 +53,7 @@ public class JobEventReceiveListener implements NotificationListener {
             event.setSchedulerName((String) compositeDataSupport.get("schedulerName"));
             event.setTriggerGroup((String) compositeDataSupport.get("triggerGroup"));
             event.setTriggerName((String) compositeDataSupport.get("triggerName"));
+            event.setType(notification.getType());
             final String[] arr = this.UUID.split("@@");
 
             if (arr.length == 2) {
@@ -62,7 +63,7 @@ public class JobEventReceiveListener implements NotificationListener {
                 event.setSchedulerId(scheduleID);
                 event.setQuartzInstanceId(uuid);
             }
-            jobEventService.saveNewEvent(event);
+            jobEventService.saveNewExecutedEvent(event);
         } catch (Exception t) {
             t.printStackTrace();
         }
