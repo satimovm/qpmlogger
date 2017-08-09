@@ -24,7 +24,7 @@ public class JobEventTO {
     private Date nextFireTime;
     private Date previousFireTime;
     private Date scheduledFireTime;
-    private boolean recovering;
+    private Boolean recovering;
     private Long jobRunTime;
     private Integer refireCount;
     private String schedulerId;
