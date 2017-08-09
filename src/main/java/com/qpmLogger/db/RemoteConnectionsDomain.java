@@ -6,8 +6,10 @@ import com.qpmLogger.dto.RemoteConnectionTO;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -18,10 +20,8 @@ import java.util.Date;
 @Setter
 @Entity
 @Table(name = TableNameConstants.Connections)
-public class RemoteConnectionsDomain implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class RemoteConnectionsDomain extends BaseDomain {
+
     private Date createdDate;
     private Date modifiedDate;
     private boolean deleted;

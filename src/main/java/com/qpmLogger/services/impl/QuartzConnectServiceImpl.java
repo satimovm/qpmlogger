@@ -36,7 +36,6 @@ import java.util.Set;
 public class QuartzConnectServiceImpl implements QuartzConnectService {
 
     private static Map<String, QuartzInstanceTO> quartzInstanceMap = Maps.newConcurrentMap();
-
     @Autowired
     private QuartzJMXAdapter quartzJMXAdapter;
     @Autowired
