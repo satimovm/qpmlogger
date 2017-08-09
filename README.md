@@ -4,4 +4,4 @@ Logs running `Quartz Scheduler` jobs into Database
 
 Getting started
 --
-Cooming soon
+Coming soon
