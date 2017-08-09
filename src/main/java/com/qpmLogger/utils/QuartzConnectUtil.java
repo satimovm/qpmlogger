@@ -12,7 +12,7 @@ import javax.management.ObjectName;
  */
 public class QuartzConnectUtil {
     public static boolean isSupported(String version) {
-        return StringUtils.isEmpty(version) && version.startsWith("2");
+        return !StringUtils.isEmpty(version) && version.startsWith("2");
     }
 
     /**
