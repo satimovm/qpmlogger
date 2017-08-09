@@ -17,17 +17,13 @@ import org.springframework.transaction.annotation.Transactional;
  * Date: 8/7/17 11:29 PM
  */
 @Slf4j
-@Service
+@Service("jobEventService")
 public class JobEventServiceImpl implements JobEventService {
 
-    private final ExecutedJobEventDao executedJobEventDao;
-    private final JobEventDao jobEventDao;
-
     @Autowired
-    public JobEventServiceImpl(ExecutedJobEventDao executedJobEventDao, JobEventDao jobEventDao) {
-        this.executedJobEventDao = executedJobEventDao;
-        this.jobEventDao = jobEventDao;
-    }
+    private ExecutedJobEventDao executedJobEventDao;
+    @Autowired
+    private JobEventDao jobEventDao;
 
     @Async
     @Override

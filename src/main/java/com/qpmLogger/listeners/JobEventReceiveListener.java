@@ -1,5 +1,6 @@
 package com.qpmLogger.listeners;
 
+import com.qpmLogger.configuration.ApplicationContextProvider;
 import com.qpmLogger.dto.JobEventTO;
 import com.qpmLogger.services.JobEventService;
 import lombok.Getter;
@@ -16,10 +17,11 @@ import java.util.Date;
  * User: Satimov Murad
  * Date: 8/7/17 11:24 PM
  */
+@Component
 public class JobEventReceiveListener implements NotificationListener {
 
     @Autowired
-    private JobEventService jobEventService;
+    private JobEventService jobEventService = (JobEventService) ApplicationContextProvider.applicationContext.getBean("jobEventService");
 
     @Getter
     @Setter
