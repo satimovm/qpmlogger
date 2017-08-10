@@ -15,7 +15,7 @@ import java.util.Date;
 @Getter
 @Setter
 @MappedSuperclass
-public class BaseJobEventDomain extends BaseDomain {
+public abstract class BaseJobEventDomain extends BaseDomain {
     private String calendarName;
     private String jobGroup;
     private String jobName;

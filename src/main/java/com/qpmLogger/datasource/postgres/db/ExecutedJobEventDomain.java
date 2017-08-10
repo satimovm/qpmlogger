@@ -22,4 +22,9 @@ public class ExecutedJobEventDomain extends BaseJobEventDomain {
     public ExecutedJobEventDomain fromTO(JobEventTO item) {
         return (ExecutedJobEventDomain) super.fromTO(item);
     }
+
+    @Override
+    public String getKey() {
+        return TableNameConstants.ExecutedJobEvent;
+    }
 }

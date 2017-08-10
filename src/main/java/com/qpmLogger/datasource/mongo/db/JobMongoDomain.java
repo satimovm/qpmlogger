@@ -1,10 +1,8 @@
 package com.qpmLogger.datasource.mongo.db;
 
+import com.qpmLogger.constants.TableNameConstants;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -15,14 +13,8 @@ import java.util.Date;
  */
 @Getter
 @Setter
-@Document(collection = "jobs_events")
-public class JobMongoDomain {
-    @Id
-    private long id;
-    @CreatedDate
-    private Date createdDate;
-    @LastModifiedDate
-    private Date modifiedDate;
+@Document(collection = TableNameConstants.ExecutedJobEvent)
+public class JobMongoDomain extends BaseMongoDomain {
     private String calendarName;
     private String jobGroup;
     private String jobName;
@@ -39,4 +31,9 @@ public class JobMongoDomain {
     private String schedulerId;
     private String quartzInstanceId;
     private String type;
+
+    @Override
+    public String getKey() {
+        return TableNameConstants.ExecutedJobEvent;
+    }
 }

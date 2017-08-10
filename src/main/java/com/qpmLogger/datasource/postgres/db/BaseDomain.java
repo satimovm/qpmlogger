@@ -1,5 +1,6 @@
 package com.qpmLogger.datasource.postgres.db;
 
+import com.qpmLogger.datasource.HasKey;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +15,7 @@ import java.util.Date;
 @Getter
 @Setter
 @MappedSuperclass
-class BaseDomain implements Serializable, Cloneable {
+abstract class BaseDomain implements Serializable, Cloneable, HasKey {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

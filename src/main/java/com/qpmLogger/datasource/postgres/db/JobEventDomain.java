@@ -23,4 +23,9 @@ public class JobEventDomain extends BaseJobEventDomain implements Serializable {
     public JobEventDomain fromTO(JobEventTO item) {
         return (JobEventDomain) super.fromTO(item);
     }
+
+    @Override
+    public String getKey() {
+        return TableNameConstants.JobEvent;
+    }
 }

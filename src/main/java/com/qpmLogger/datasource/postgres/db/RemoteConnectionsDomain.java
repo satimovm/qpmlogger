@@ -55,4 +55,9 @@ public class RemoteConnectionsDomain extends BaseDomain {
         this.setConnected(item.getConnected());
         this.setUuid(item.getUuid());
     }
+
+    @Override
+    public String getKey() {
+        return TableNameConstants.Connections;
+    }
 }
