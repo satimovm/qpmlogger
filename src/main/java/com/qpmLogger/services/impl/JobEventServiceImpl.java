@@ -1,14 +1,16 @@
 package com.qpmLogger.services.impl;
 
-import com.qpmLogger.dao.ExecutedJobEventDao;
-import com.qpmLogger.dao.JobEventDao;
-import com.qpmLogger.db.ExecutedJobEventDomain;
-import com.qpmLogger.db.JobEventDomain;
+import com.qpmLogger.datasource.postgres.dao.ExecutedJobEventDao;
+import com.qpmLogger.datasource.postgres.dao.JobEventDao;
+import com.qpmLogger.datasource.postgres.db.ExecutedJobEventDomain;
+import com.qpmLogger.datasource.postgres.db.JobEventDomain;
 import com.qpmLogger.dto.JobEventTO;
-import com.qpmLogger.mongo.dao.JobMongoDao;
+import com.qpmLogger.datasource.mongo.dao.JobMongoDao;
+import com.qpmLogger.datasource.mongo.db.JobMongoDomain;
 import com.qpmLogger.services.JobEventService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,8 +41,14 @@ public class JobEventServiceImpl implements JobEventService {
             log.error("Empty job event");
             return;
         }
-        executedJobEventDao.save(domain);
-        jobMongoDao.save(domain.toMongoEntity());
+//        executedJobEventDao.save(domain);
+        FindAndModifyOptions options = new FindAndModifyOptions();
+        options.returnNew(true);
+        final JobMongoDomain mongoDomain = domain.toMongoEntity();
+
+        jobEventDao.getNextSequenceId()
+
+        jobMongoDao.save();
     }
 
     @Async
@@ -54,6 +62,6 @@ public class JobEventServiceImpl implements JobEventService {
             log.error("Empty job event");
             return;
         }
-        jobEventDao.save(domain);
+//        jobEventDao.save(domain);
     }
 }

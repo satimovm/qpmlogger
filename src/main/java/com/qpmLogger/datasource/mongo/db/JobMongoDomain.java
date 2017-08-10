@@ -1,8 +1,10 @@
-package com.qpmLogger.mongo.db;
+package com.qpmLogger.datasource.mongo.db;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -17,6 +19,10 @@ import java.util.Date;
 public class JobMongoDomain {
     @Id
     private long id;
+    @CreatedDate
+    private Date createdDate;
+    @LastModifiedDate
+    private Date modifiedDate;
     private String calendarName;
     private String jobGroup;
     private String jobName;

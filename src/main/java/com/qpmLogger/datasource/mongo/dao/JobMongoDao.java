@@ -1,6 +1,6 @@
-package com.qpmLogger.mongo.dao;
+package com.qpmLogger.datasource.mongo.dao;
 
-import com.qpmLogger.mongo.db.JobMongoDomain;
+import com.qpmLogger.datasource.mongo.db.JobMongoDomain;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**

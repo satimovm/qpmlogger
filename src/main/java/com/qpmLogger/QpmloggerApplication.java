@@ -7,10 +7,10 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication(scanBasePackages = {
         "com.qpmLogger.configuration",
-        "com.qpmLogger.dao",
+        "com.qpmLogger.datasource.postgres.dao",
         "com.qpmLogger.listeners",
         "com.qpmLogger.services",
-        "com.qpmLogger.mongo"
+        "com.qpmLogger.datasource.mongo"
 })
 public class QpmloggerApplication extends SpringBootServletInitializer {
 
