@@ -9,18 +9,20 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.stereotype.Repository;
 
 /**
  * User: satimov
  * Date: 8/10/17 5:42 PM
  */
+@Repository
 public class SequenceDaoImpl implements SequenceDao {
 
     @Autowired
     private MongoOperations mongoOperation;
 
     @Override
-    public long getNextSequenceId(String key) throws SequenceException {
+    public Long getNextSequenceId(String key) throws SequenceException {
         final Query query = new Query(Criteria.where("_id").is(key));
 
         final Update update = new Update();
