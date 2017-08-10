@@ -1,6 +1,7 @@
 package com.qpmLogger.db;
 
 import com.qpmLogger.dto.JobEventTO;
+import com.qpmLogger.mongo.db.JobMongoDomain;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -46,13 +47,36 @@ public class BaseJobEventDomain extends BaseDomain {
         this.setNextFireTime(item.getNextFireTime());
         this.setPreviousFireTime(item.getPreviousFireTime());
         this.setScheduledFireTime(item.getScheduledFireTime());
-        this.setRecovering(item.isRecovering());
+        this.setRecovering(item.getRecovering());
         this.setJobRunTime(item.getJobRunTime());
         this.setRefireCount(item.getRefireCount());
         this.setSchedulerId(item.getSchedulerId());
         this.setQuartzInstanceId(item.getQuartzInstanceId());
         this.setType(item.getType());
         return this;
+    }
+
+    public JobMongoDomain toMongoEntity() {
+        final JobMongoDomain mongoDomain = new JobMongoDomain();
+
+        mongoDomain.setId(this.getId());
+        mongoDomain.setCalendarName(this.getCalendarName());
+        mongoDomain.setJobGroup(this.getJobGroup());
+        mongoDomain.setJobName(this.getJobName());
+        mongoDomain.setSchedulerName(this.getSchedulerName());
+        mongoDomain.setTriggerGroup(this.getTriggerGroup());
+        mongoDomain.setTriggerName(this.getTriggerName());
+        mongoDomain.setFireTime(this.getFireTime());
+        mongoDomain.setNextFireTime(this.getNextFireTime());
+        mongoDomain.setPreviousFireTime(this.getPreviousFireTime());
+        mongoDomain.setScheduledFireTime(this.getScheduledFireTime());
+        mongoDomain.setRecovering(this.isRecovering());
+        mongoDomain.setJobRunTime(this.getJobRunTime());
+        mongoDomain.setRefireCount(this.getRefireCount());
+        mongoDomain.setSchedulerId(this.getSchedulerId());
+        mongoDomain.setQuartzInstanceId(this.getQuartzInstanceId());
+        mongoDomain.setType(this.getType());
+        return mongoDomain;
     }
 
     public JobEventTO toTO() {

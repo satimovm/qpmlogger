@@ -9,7 +9,8 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
         "com.qpmLogger.configuration",
         "com.qpmLogger.dao",
         "com.qpmLogger.listeners",
-        "com.qpmLogger.services"
+        "com.qpmLogger.services",
+        "com.qpmLogger.mongo"
 })
 public class QpmloggerApplication extends SpringBootServletInitializer {
 
