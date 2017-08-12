@@ -1,12 +1,13 @@
 package com.qpmLogger.datasource.postgres.db;
 
-import com.qpmLogger.dto.JobEventTO;
 import com.qpmLogger.datasource.mongo.db.JobMongoDomain;
+import com.qpmLogger.dto.JobEventTO;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.MappedSuperclass;
 import java.util.Date;
+import java.util.Optional;
 
 /**
  * User: satimov
@@ -47,7 +48,7 @@ public abstract class BaseJobEventDomain extends BaseDomain {
         this.setNextFireTime(item.getNextFireTime());
         this.setPreviousFireTime(item.getPreviousFireTime());
         this.setScheduledFireTime(item.getScheduledFireTime());
-        this.setRecovering(item.getRecovering());
+        this.setRecovering(Optional.ofNullable(item.getRecovering()).orElse(false));
         this.setJobRunTime(item.getJobRunTime());
         this.setRefireCount(item.getRefireCount());
         this.setSchedulerId(item.getSchedulerId());

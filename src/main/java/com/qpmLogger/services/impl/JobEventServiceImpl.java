@@ -1,16 +1,14 @@
 package com.qpmLogger.services.impl;
 
+import com.qpmLogger.datasource.mongo.dao.JobMongoDaoCustom;
 import com.qpmLogger.datasource.postgres.dao.ExecutedJobEventDao;
 import com.qpmLogger.datasource.postgres.dao.JobEventDao;
 import com.qpmLogger.datasource.postgres.db.ExecutedJobEventDomain;
 import com.qpmLogger.datasource.postgres.db.JobEventDomain;
 import com.qpmLogger.dto.JobEventTO;
-import com.qpmLogger.datasource.mongo.dao.JobMongoDao;
-import com.qpmLogger.datasource.mongo.db.JobMongoDomain;
 import com.qpmLogger.services.JobEventService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +26,7 @@ public class JobEventServiceImpl implements JobEventService {
     @Autowired
     private ExecutedJobEventDao executedJobEventDao;
     @Autowired
-    private JobMongoDao jobMongoDao;
+    private JobMongoDaoCustom jobMongoDao;
 
     @Async
     @Override
@@ -42,13 +40,7 @@ public class JobEventServiceImpl implements JobEventService {
             return;
         }
 //        executedJobEventDao.save(domain);
-        FindAndModifyOptions options = new FindAndModifyOptions();
-        options.returnNew(true);
-        final JobMongoDomain mongoDomain = domain.toMongoEntity();
-
-        jobEventDao.getNextSequenceId()
-
-        jobMongoDao.save();
+        jobMongoDao.save(domain.toMongoEntity());
     }
 
     @Async
