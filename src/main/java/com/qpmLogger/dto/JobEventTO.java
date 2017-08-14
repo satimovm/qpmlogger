@@ -1,8 +1,8 @@
 package com.qpmLogger.dto;
 
+import com.qpmLogger.utils.DateUtils;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.util.Date;
 
@@ -12,7 +12,6 @@ import java.util.Date;
  */
 @Getter
 @Setter
-@ToString
 public class JobEventTO {
     private String calendarName;
     private String jobGroup;
@@ -30,4 +29,19 @@ public class JobEventTO {
     private String schedulerId;
     private String quartzInstanceId;
     private String type;
+
+    @Override
+    public String toString() {
+        return "\n" +
+               "*****************************************************************************\n" +
+               "*\t\tJobEventTO(jobGroup: " + jobGroup +"\n"+
+               "*\t\tjobName: " + jobName + "\n" +
+               "*\t\ttriggerGroup: " + triggerGroup +"\n"+
+               "*\t\ttriggerName: " + triggerName + "\n" +
+               "*\t\tfireTime: " + DateUtils.formatLong(fireTime) +"\n" +
+               "*\t\tnextFireTime " + DateUtils.formatLong(nextFireTime) + "\n" +
+               "*\t\tjobRunTime: " + jobRunTime +" ms);\n"+
+               "*****************************************************************************";
+
+    }
 }

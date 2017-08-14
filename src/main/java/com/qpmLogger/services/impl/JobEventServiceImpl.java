@@ -32,14 +32,14 @@ public class JobEventServiceImpl implements JobEventService {
     @Override
     @Transactional
     public void saveExecutedEvent(JobEventTO event) {
-        log.info("Saving new executed JobEvent: " + event);
+        log.info(event.toString());
         final ExecutedJobEventDomain domain = new ExecutedJobEventDomain().fromTO(event);
 
         if (domain == null) {
             log.error("Empty job event");
             return;
         }
-//        executedJobEventDao.save(domain);
+        executedJobEventDao.save(domain);
         jobMongoDao.save(domain.toMongoEntity());
     }
 
@@ -47,13 +47,12 @@ public class JobEventServiceImpl implements JobEventService {
     @Override
     @Transactional
     public void saveJobEvent(JobEventTO event) {
-        log.info("Saving new JobEvent: " + event);
         final JobEventDomain domain = new JobEventDomain().fromTO(event);
 
         if (domain == null) {
             log.error("Empty job event");
             return;
         }
-//        jobEventDao.save(domain);
+        jobEventDao.save(domain);
     }
 }

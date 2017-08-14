@@ -49,8 +49,8 @@ public abstract class BaseJobEventDomain extends BaseDomain {
         this.setPreviousFireTime(item.getPreviousFireTime());
         this.setScheduledFireTime(item.getScheduledFireTime());
         this.setRecovering(Optional.ofNullable(item.getRecovering()).orElse(false));
-        this.setJobRunTime(item.getJobRunTime());
-        this.setRefireCount(item.getRefireCount());
+        this.setJobRunTime(Optional.ofNullable(item.getJobRunTime()).orElse(0L));
+        this.setRefireCount(Optional.ofNullable(item.getRefireCount()).orElse(0));
         this.setSchedulerId(item.getSchedulerId());
         this.setQuartzInstanceId(item.getQuartzInstanceId());
         this.setType(item.getType());
@@ -60,7 +60,7 @@ public abstract class BaseJobEventDomain extends BaseDomain {
     public JobMongoDomain toMongoEntity() {
         final JobMongoDomain mongoDomain = new JobMongoDomain();
 
-//        mongoDomain.setId(this.getId());
+        mongoDomain.setId(this.getId());
         mongoDomain.setCalendarName(this.getCalendarName());
         mongoDomain.setJobGroup(this.getJobGroup());
         mongoDomain.setJobName(this.getJobName());
