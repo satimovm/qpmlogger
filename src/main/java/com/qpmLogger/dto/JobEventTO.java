@@ -33,13 +33,13 @@ public class JobEventTO {
     @Override
     public String toString() {
         return "com.qpmLogger.dto.JobEventTO {\n" +
-               "\t\t\t\t\t\tjobGroup:\t\t\t" + jobGroup +"\n"+
-               "\t\t\t\t\t\tjobName:\t\t\t" + jobName + "\n" +
-               "\t\t\t\t\t\ttriggerGroup:\t\t" + triggerGroup +"\n"+
-               "\t\t\t\t\t\ttriggerName:\t\t" + triggerName + "\n" +
-               "\t\t\t\t\t\tfireTime:\t\t\t" + DateUtils.formatLong(fireTime) +"\n" +
-               "\t\t\t\t\t\tnextFireTime:\t\t" + DateUtils.formatLong(nextFireTime) + "\n" +
-               "\t\t\t\t\t\tjobRunTime:\t\t\t" + jobRunTime +" ms\n" +
+               "\t\t\t\t\t\tjobGroup: " + jobGroup +"\n"+
+               "\t\t\t\t\t\tjobName: " + jobName + "\n" +
+               "\t\t\t\t\t\ttriggerGroup: " + triggerGroup +"\n"+
+               "\t\t\t\t\t\ttriggerName: " + triggerName + "\n" +
+               "\t\t\t\t\t\tfireTime: " + DateUtils.formatLong(fireTime) +"\n" +
+               "\t\t\t\t\t\tnextFireTime: " + DateUtils.formatLong(nextFireTime) + "\n" +
+               "\t\t\t\t\t\tjobRunTime: " + jobRunTime +" ms\n" +
                "\t\t\t\t\t}\n"+
                "***********************************************************************";
 
