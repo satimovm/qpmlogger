@@ -40,6 +40,7 @@ public class ApplicationShutdownListener implements ApplicationListener<ContextC
                 final JMXConnector jmxConnector = instanceTO.getJmxConnector();
 
                 if (jmxConnector != null) {
+                    log.info("--------------Closing JMX connection----------------");
                     jmxConnector.close();
                 }
             } catch (IOException e) {

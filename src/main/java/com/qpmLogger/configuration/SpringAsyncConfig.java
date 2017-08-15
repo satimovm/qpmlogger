@@ -19,7 +19,7 @@ import java.util.concurrent.Executor;
 @Configuration
 public class SpringAsyncConfig implements SchedulingConfigurer {
 
-    @Bean(name = "threadPoolTaskExecutor", destroyMethod = "shutdown")
+    @Bean(name = "taskExecutor", destroyMethod = "shutdown")
     public Executor threadPoolTaskExecutor() {
         final ThreadPoolTaskScheduler executor = new ThreadPoolTaskScheduler();
 

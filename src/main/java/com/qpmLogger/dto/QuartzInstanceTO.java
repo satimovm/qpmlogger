@@ -40,6 +40,10 @@ public class QuartzInstanceTO extends RemoteConnectionTO {
         }
     }
 
+    public static Map<String, JobEventReceiveListener> getListenersMap() {
+        return listenersMap;
+    }
+
     public SchedulerTO getSchedulerByInstanceId(String instanceId) {
         for (SchedulerTO scheduler : this.getSchedulerList()) {
             if (scheduler != null && scheduler.getInstanceId().equals(instanceId)) {
