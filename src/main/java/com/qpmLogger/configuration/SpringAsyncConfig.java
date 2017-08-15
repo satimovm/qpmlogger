@@ -2,8 +2,6 @@ package com.qpmLogger.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.task.SimpleAsyncTaskExecutor;
-import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
@@ -28,14 +26,14 @@ public class SpringAsyncConfig implements SchedulingConfigurer {
         return executor;
     }
 
-    @Bean(name = "SimpleAsyncTaskExecutor")
-    public TaskExecutor simpleTaskExecutor() {
-        final SimpleAsyncTaskExecutor taskExecutor = new SimpleAsyncTaskExecutor();
-
-        taskExecutor.setConcurrencyLimit(10);
-        taskExecutor.setDaemon(false);
-        return taskExecutor;
-    }
+//    @Bean(name = "SimpleAsyncTaskExecutor")
+//    public TaskExecutor simpleTaskExecutor() {
+//        final SimpleAsyncTaskExecutor taskExecutor = new SimpleAsyncTaskExecutor();
+//
+//        taskExecutor.setConcurrencyLimit(10);
+//        taskExecutor.setDaemon(false);
+//        return taskExecutor;
+//    }
 
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {

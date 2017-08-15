@@ -9,6 +9,7 @@ import com.qpmLogger.dto.JobEventTO;
 import com.qpmLogger.services.JobEventService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +28,7 @@ public class JobEventServiceImpl implements JobEventService {
     @Autowired
     private JobMongoDaoCustom jobMongoDao;
 
+    @Async
     @Override
     @Transactional
     public void saveExecutedEvent(JobEventTO event) {
@@ -41,6 +43,7 @@ public class JobEventServiceImpl implements JobEventService {
         jobMongoDao.save(domain.toMongoEntity());
     }
 
+    @Async
     @Override
     @Transactional
     public void saveJobEvent(JobEventTO event) {
