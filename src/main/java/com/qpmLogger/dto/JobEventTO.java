@@ -34,7 +34,7 @@ public class JobEventTO {
     public String toString() {
         return "com.qpmLogger.dto.JobEventTO {\n" +
                "\t\t\t\t\t\tjobGroup: " + jobGroup +"\n"+
-               "\t\t\t\t\t\tjobName: " + jobName + "\n" +
+               "\t\t\t\t\t\tjobName: " + jobName + "\n" +    
                "\t\t\t\t\t\ttriggerGroup: " + triggerGroup +"\n"+
                "\t\t\t\t\t\ttriggerName: " + triggerName + "\n" +
                "\t\t\t\t\t\tfireTime: " + DateUtils.formatLong(fireTime) +"\n" +
